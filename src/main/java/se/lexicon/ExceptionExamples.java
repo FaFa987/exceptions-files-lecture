@@ -5,6 +5,8 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ExceptionExamples {
@@ -19,7 +21,7 @@ public class ExceptionExamples {
 //        Path filePath = Paths.get("folder/TestHere.txt");
 //        BufferedReader reader = Files.newBufferedReader(filePath);
 
-        ex1();
+        ex2();
 
     }
 
@@ -44,8 +46,25 @@ public class ExceptionExamples {
                 //e.printStackTrace();
             }
         }
+    }
+
+    public static void ex2(){
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Enter your birthDate (YYYY-MM-DD): ");
+
+            try {
+                String input = scanner.nextLine();
+                LocalDate date = LocalDate.parse(input);
+                System.out.println(date);
+
+            }catch (DateTimeException e) {
+                e.printStackTrace();
+            }
+        }
+        }
 
 
 
     }
-}
