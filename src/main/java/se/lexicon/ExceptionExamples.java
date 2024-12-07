@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.function.Supplier;
 
 public class ExceptionExamples {
     public static void main(String[] args) {
@@ -21,7 +22,8 @@ public class ExceptionExamples {
 //        Path filePath = Paths.get("folder/TestHere.txt");
 //        BufferedReader reader = Files.newBufferedReader(filePath);
 
-        ex2();
+        LocalDate localDate = takeDate.get();
+        System.out.println(localDate);
 
     }
 
@@ -60,10 +62,31 @@ public class ExceptionExamples {
                 System.out.println(date);
 
             }catch (DateTimeException e) {
-                e.printStackTrace();
+                // e.printStackTrace();
+                System.out.println("Invalid date format. Please enter date in yyyy-mm-dd format. " + e.getMessage());
             }
         }
         }
+
+    public static Supplier<LocalDate> takeDate = () -> {
+        Scanner scanner = new Scanner(System.in);
+        LocalDate date = null;
+
+        while (true) {
+            System.out.println("Enter your birthDate (YYYY-MM-DD): ");
+
+            try {
+                String input = scanner.nextLine();
+                date = LocalDate.parse(input);
+                break;
+
+            }catch (DateTimeException e) {
+                // e.printStackTrace();
+                System.out.println("Invalid date format. Please enter date in yyyy-mm-dd format. " + e.getMessage());
+            }
+        }
+        return date;
+    };
 
 
 
