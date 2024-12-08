@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class ExceptionExamples {
     public static void main(String[] args) {
@@ -92,7 +93,13 @@ public class ExceptionExamples {
         return date;
     };
 
+    //   NIO (Non-Blocking style, reactive. - Not Covered much here.)
+
+    //Checked (Compile Time) Exception
+    //Files I/O, NIO
     public static void ex4(){
+        //java.io
+        //java.nio
 
         // Path filePath = Paths.get("D:\\lexicon\\Java\\exceptions-files-lecture\\Folder\\lastnames.txt");
         Path filePath = Paths.get("Folder/lastnames.txt");
@@ -100,9 +107,11 @@ public class ExceptionExamples {
         try {
             BufferedReader reader = Files.newBufferedReader(filePath);
 
-            List<String> lastnames = reader.lines().toList();
+            // List<String> lastnames = reader.lines().toList();
+            //lastnames.forEach(System.out::println);
 
-            lastnames.forEach(System.out::println);
+            Stream<String> lines = Files.lines(filePath);
+            lines.forEach(System.out::println);
 
         }catch (IOException e) {
             e.printStackTrace();
