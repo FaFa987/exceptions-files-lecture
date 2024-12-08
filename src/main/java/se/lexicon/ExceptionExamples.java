@@ -116,6 +116,9 @@ public class ExceptionExamples {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void ex5(){
 
 
     }
