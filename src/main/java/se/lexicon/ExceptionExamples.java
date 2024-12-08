@@ -2,11 +2,13 @@ package se.lexicon;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;
 
@@ -22,8 +24,10 @@ public class ExceptionExamples {
 //        Path filePath = Paths.get("folder/TestHere.txt");
 //        BufferedReader reader = Files.newBufferedReader(filePath);
 
-        LocalDate localDate = takeDate.get();
-        System.out.println(localDate);
+        // LocalDate localDate = takeDate.get();
+        // System.out.println(localDate);
+
+        ex4();
 
     }
 
@@ -87,6 +91,25 @@ public class ExceptionExamples {
         }
         return date;
     };
+
+    public static void ex4(){
+
+        // Path filePath = Paths.get("D:\\lexicon\\Java\\exceptions-files-lecture\\Folder\\lastnames.txt");
+        Path filePath = Paths.get("Folder/lastnames.txt");
+
+        try {
+            BufferedReader reader = Files.newBufferedReader(filePath);
+
+            List<String> lastnames = reader.lines().toList();
+
+            lastnames.forEach(System.out::println);
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 
 
