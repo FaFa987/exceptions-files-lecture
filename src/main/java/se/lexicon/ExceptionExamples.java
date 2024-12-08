@@ -3,9 +3,7 @@ package se.lexicon;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.List;
@@ -28,7 +26,7 @@ public class ExceptionExamples {
         // LocalDate localDate = takeDate.get();
         // System.out.println(localDate);
 
-        ex4();
+        ex5();
 
     }
 
@@ -119,6 +117,23 @@ public class ExceptionExamples {
     }
 
     public static void ex5(){
+
+        Path sourceFile = Paths.get("source/baby-groot-4k-2018-96.jpg");
+        Path destinationPath =Paths.get("destination");
+
+        try {
+            Files.copy(sourceFile, destinationPath.resolve(sourceFile.getFileName())
+                    , StandardCopyOption.REPLACE_EXISTING
+                    , StandardCopyOption.COPY_ATTRIBUTES
+            );
+
+        } catch (NoSuchFileException e) {
+            System.out.println("File Path does not exist: " + e);
+        } catch (FileAlreadyExistsException e) {
+            System.out.println("File Already Exists: " + e);
+        } catch (IOException e){
+            System.out.println("IO Exception: " + e);
+        }
 
 
     }
