@@ -1,6 +1,7 @@
 package se.lexicon;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
@@ -27,11 +28,13 @@ public class ExceptionExamples {
         // LocalDate localDate = takeDate.get();
         // System.out.println(localDate);
 
-        try {
+        /*try {
             ex7();
         } catch (InsufficientFundsException e) {
             throw new RuntimeException(e);
-        }
+        }*/
+
+        writeRextToFile();
 
     }
 
@@ -178,6 +181,23 @@ public class ExceptionExamples {
 
         balance = balance - amount;
         System.out.println("Current balance: " + balance);
+    }
+        // throw: is used to throw an exception or exceptional event(propagate the exception to a higher-lever).
+        // throws: is used to indicate that a method might throw one or more exceptions -- What about checked vs unchecked
+
+    public static void writeRextToFile(){
+
+        Path relativePath = Paths.get("Folder/TextHere.txt");
+      
+        try {
+            BufferedWriter bufferedWriter = Files.newBufferedWriter(relativePath);
+            bufferedWriter.write("HELO BODY");
+            bufferedWriter.newLine();
+            bufferedWriter.close();
+        } catch (IOException e) {
+            System.out.println("An I/O Exception occurred: " + e.getMessage());
+        }
+
 
     }
 

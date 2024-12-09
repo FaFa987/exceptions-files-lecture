@@ -1,6 +1,6 @@
 package se.lexicon;
 
-public class InsufficientFundsException extends Exception{
+public class InsufficientFundsException extends RuntimeException{
 
     private double balance;
     private double amount;
