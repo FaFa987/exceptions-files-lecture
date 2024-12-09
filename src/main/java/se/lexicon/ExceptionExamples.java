@@ -188,7 +188,7 @@ public class ExceptionExamples {
     public static void writeRextToFile(){
 
         Path relativePath = Paths.get("Folder/TextHere.txt");
-        BufferedWriter bufferedWriter = null
+        BufferedWriter bufferedWriter = null;
       
         try {
             bufferedWriter = Files.newBufferedWriter(relativePath);
@@ -197,7 +197,8 @@ public class ExceptionExamples {
 
         } catch (IOException e) {
             System.out.println("An I/O Exception occurred: " + e.getMessage());
-        } finally {
+        } finally { //Always running last
+            System.out.println("Finally Block Executed");
 
             if(bufferedWriter != null) {
                 try {
