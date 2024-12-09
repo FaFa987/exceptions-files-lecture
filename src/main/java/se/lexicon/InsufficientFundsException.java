@@ -5,7 +5,7 @@ public class InsufficientFundsException extends Exception{
     private double balance;
     private double amount;
 
-    public InsufficientFundsException(String message, double balance, double amount) {
+    public InsufficientFundsException(double balance, double amount, String message) {
         super(message);
         this.balance = balance;
         this.amount = amount;

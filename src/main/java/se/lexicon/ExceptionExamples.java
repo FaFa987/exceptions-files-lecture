@@ -27,7 +27,11 @@ public class ExceptionExamples {
         // LocalDate localDate = takeDate.get();
         // System.out.println(localDate);
 
-        ex7();
+        try {
+            ex7();
+        } catch (InsufficientFundsException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -160,13 +164,17 @@ public class ExceptionExamples {
     //Throw our own Exception
     // and Throws Keyword
     //Mathematical it's okay, it's not okay in our bank transaction.(Business Logic)
-    public static void ex7(){
+    public static void ex7() throws InsufficientFundsException{
 
         double balance = 100;
         double amount = 150;
         System.out.println("Operation - Withdraw");
         System.out.println("Current balance: " + balance);
         System.out.println("Withdraw Amount: " + amount);
+
+        if(amount > balance){
+            throw new InsufficientFundsException(balance,amount,"Balance is Insufficient...");
+        }
 
         balance = balance - amount;
         System.out.println("Current balance: " + balance);
