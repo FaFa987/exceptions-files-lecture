@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
+import java.security.spec.RSAOtherPrimeInfo;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.List;
@@ -26,7 +27,7 @@ public class ExceptionExamples {
         // LocalDate localDate = takeDate.get();
         // System.out.println(localDate);
 
-        ex5();
+        ex7();
 
     }
 
@@ -116,6 +117,7 @@ public class ExceptionExamples {
         }
     }
 
+    //Copy an Image to another folder using NIO
     public static void ex5(){
 
         Path sourceFile = Paths.get("source/baby-groot-4k-2018-96.jpg");
@@ -126,7 +128,7 @@ public class ExceptionExamples {
                     , StandardCopyOption.REPLACE_EXISTING
                     , StandardCopyOption.COPY_ATTRIBUTES
             );
-
+            //Specific Exception -> General Exception
         } catch (NoSuchFileException e) {
             System.out.println("File Path does not exist: " + e);
         } catch (FileAlreadyExistsException e) {
@@ -134,7 +136,40 @@ public class ExceptionExamples {
         } catch (IOException e){
             System.out.println("IO Exception: " + e);
         }
+    }
 
+    //Throw an exception with "throw" keyword
+    public static void ex6(){
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter number 1: ");
+        int number1 = sc.nextInt();
+        System.out.println("Enter number 2: ");
+        int number2 = sc.nextInt();
+
+        if (number2 == 0) {
+            throw new ArithmeticException("Number 2 should not be Zero.");
+        }
+
+        int result = number1 / number2;
+        System.out.println("result = " + result);
+
+    }
+
+    //Throw our own Exception
+    // and Throws Keyword
+    //Mathematical it's okay, it's not okay in our bank transaction.(Business Logic)
+    public static void ex7(){
+
+        double balance = 100;
+        double amount = 150;
+        System.out.println("Operation - Withdraw");
+        System.out.println("Current balance: " + balance);
+        System.out.println("Withdraw Amount: " + amount);
+
+        balance = balance - amount;
+        System.out.println("Current balance: " + balance);
 
     }
 
