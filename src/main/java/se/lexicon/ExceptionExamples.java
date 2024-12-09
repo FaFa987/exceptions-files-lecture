@@ -34,7 +34,7 @@ public class ExceptionExamples {
             throw new RuntimeException(e);
         }*/
 
-        writeRextToFile();
+        writeTextToFileResource();
 
     }
 
@@ -208,10 +208,32 @@ public class ExceptionExamples {
                 }
             }
         }
+    }
 
+    public static void writeTextToFileResource(){
+
+        Path relativePath = Paths.get("exceptions-files-lecture/folder/TextHere.txt");
+
+        // Try with Resource - AutoCloses resources, if they implement AutoClosable Interface
+        try(BufferedWriter bufferedWriter = Files.newBufferedWriter(relativePath
+                ,StandardOpenOption.CREATE
+                ,StandardOpenOption.APPEND)
+        ){
+
+            bufferedWriter.write("In the middle of difficulty lies opportunity. – Albert Einstein");
+            bufferedWriter.newLine();
+        }catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }finally {
+            // Will always run last
+            //Clean up station
+            System.out.println("Finally Block executed");
+        }
+        }
 
     }
 
 
 
-    }
+
