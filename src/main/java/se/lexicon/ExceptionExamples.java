@@ -1,5 +1,6 @@
 package se.lexicon;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -40,7 +41,8 @@ public class ExceptionExamples {
         writeRextToFile();
         writeTextToFileResource();
 
-        savePeopleAsJSON();
+        // savePeopleAsJSON();
+        readPeopleFromJSON();
 
     }
 
@@ -242,7 +244,7 @@ public class ExceptionExamples {
         }
 
 
-        public static void savePeopleAsJSON(){
+    public static void savePeopleAsJSON(){
 
             List<Person> people = new ArrayList<>();
 
@@ -263,6 +265,24 @@ public class ExceptionExamples {
             }
 
         }
+
+    public static void readPeopleFromJSON(){
+
+        File file = new File("Folder/people.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Person> people = null;
+
+        try {
+            people = objectMapper.readValue(file, new TypeReference<List<Person>>(){});
+
+            System.out.println("People Data read from JSON file");
+
+            people.forEach(System.out::println);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
