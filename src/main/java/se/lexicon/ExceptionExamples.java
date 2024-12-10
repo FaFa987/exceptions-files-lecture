@@ -1,5 +1,7 @@
 package se.lexicon;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,6 +10,7 @@ import java.nio.file.*;
 import java.security.spec.RSAOtherPrimeInfo;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;
@@ -35,6 +38,8 @@ public class ExceptionExamples {
         }*/
         writeRextToFile();
         writeTextToFileResource();
+
+        savePeopleAsJSON();
 
     }
 
@@ -233,6 +238,28 @@ public class ExceptionExamples {
             //Clean up station
             System.out.println("Finally Block executed");
         }
+        }
+
+
+        public static void savePeopleAsJSON(){
+
+            List<Person> people = new ArrayList<>();
+
+            people.add(new Person("Alice",30));
+            people.add(new Person("Bob", 25));
+            people.add(new Person("Charles", 35));
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            File file = new File("Folder/people.json");
+
+            try {
+                objectMapper.writeValue(file,people);
+                System.out.println("People data saved to File.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
 
 
