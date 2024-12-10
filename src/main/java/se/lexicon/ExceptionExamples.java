@@ -1,6 +1,7 @@
 package se.lexicon;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -250,6 +251,7 @@ public class ExceptionExamples {
             people.add(new Person("Charles", 35));
 
             ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
             File file = new File("Folder/people.json");
 
