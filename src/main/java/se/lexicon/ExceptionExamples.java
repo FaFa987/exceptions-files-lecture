@@ -215,14 +215,17 @@ public class ExceptionExamples {
         Path relativePath = Paths.get("Folder/TextHere.txt");
 
         // Try with Resource - AutoCloses resources, if they implement AutoClosable Interface
-        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(relativePath)){
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(relativePath
+                , StandardOpenOption.CREATE
+                , StandardOpenOption.APPEND
+        )
+        ){
             bufferedWriter.append("In the middle of difficulty lies opportunity. – Albert Einstein");
             bufferedWriter.newLine();
         } catch (NoSuchFileException e){
             System.out.println("File does not exist: " + e.getMessage());
         }
-        catch (IOException e)
-        {
+        catch (IOException e) {
             e.printStackTrace();
         }
         finally {
