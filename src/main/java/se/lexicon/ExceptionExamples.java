@@ -33,7 +33,7 @@ public class ExceptionExamples {
         } catch (InsufficientFundsException e) {
             throw new RuntimeException(e);
         }*/
-
+        writeRextToFile();
         writeTextToFileResource();
 
     }
@@ -234,6 +234,10 @@ public class ExceptionExamples {
             System.out.println("Finally Block executed");
         }
         }
+
+
+
+
 
     }
 
